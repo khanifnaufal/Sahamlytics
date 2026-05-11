@@ -59,15 +59,15 @@ def render():
     
     name = info.get("longName", ticker_display)
     st.markdown(f"""
-    <div style="background:#111827;border:1px solid #1e293b;border-radius:8px;
-                padding:12px 20px;margin-bottom:16px;display:flex;align-items:center;">
-        {logo_html}
-        <div>
-            <span style="font-family:'Space Mono',monospace;font-size:20px;font-weight:700;color:#00e5ff;">{ticker_display.replace('.JK','')}</span>
-            <span style="font-size:14px;color:#90a4ae;margin-left:8px;">{name}</span>
-        </div>
+<div style="background:#111827;border:1px solid #1e293b;border-radius:8px;
+            padding:12px 20px;margin-bottom:16px;display:flex;align-items:center;">
+    {logo_html}
+    <div>
+        <span style="font-family:'Space Mono',monospace;font-size:20px;font-weight:700;color:#00e5ff;">{ticker_display.replace('.JK','')}</span>
+        <span style="font-size:14px;color:#90a4ae;margin-left:8px;">{name}</span>
     </div>
-    """, unsafe_allow_html=True)
+</div>
+""", unsafe_allow_html=True)
 
     if len(df) < 2:
         st.warning("⚠️ Data historis tidak cukup untuk analisa teknikal.")
@@ -115,19 +115,19 @@ def render():
         tp = sig.get("tp")
         if sl:
             st.markdown(f"""
-            <div style="background:#111827;border:1px solid #1e293b;border-radius:8px;padding:10px 16px;text-align:center;">
-                <div style="font-size:11px;color:#546e7a;font-family:'Space Mono',monospace;">STOP LOSS</div>
-                <div style="font-size:20px;font-weight:700;color:#ff1744;font-family:'Space Mono',monospace;">Rp {sl:,.0f}</div>
-                <div style="font-size:11px;color:#37474f;">({((sl-close)/close*100):+.1f}%)</div>
-            </div>""", unsafe_allow_html=True)
+<div style="background:#111827;border:1px solid #1e293b;border-radius:8px;padding:10px 16px;text-align:center;">
+    <div style="font-size:11px;color:#546e7a;font-family:'Space Mono',monospace;">STOP LOSS</div>
+    <div style="font-size:20px;font-weight:700;color:#ff1744;font-family:'Space Mono',monospace;">Rp {sl:,.0f}</div>
+    <div style="font-size:11px;color:#37474f;">({((sl-close)/close*100):+.1f}%)</div>
+</div>""", unsafe_allow_html=True)
     with sc3:
         if tp:
             st.markdown(f"""
-            <div style="background:#111827;border:1px solid #1e293b;border-radius:8px;padding:10px 16px;text-align:center;">
-                <div style="font-size:11px;color:#546e7a;font-family:'Space Mono',monospace;">TAKE PROFIT</div>
-                <div style="font-size:20px;font-weight:700;color:#00e676;font-family:'Space Mono',monospace;">Rp {tp:,.0f}</div>
-                <div style="font-size:11px;color:#37474f;">({((tp-close)/close*100):+.1f}%)</div>
-            </div>""", unsafe_allow_html=True)
+<div style="background:#111827;border:1px solid #1e293b;border-radius:8px;padding:10px 16px;text-align:center;">
+    <div style="font-size:11px;color:#546e7a;font-family:'Space Mono',monospace;">TAKE PROFIT</div>
+    <div style="font-size:20px;font-weight:700;color:#00e676;font-family:'Space Mono',monospace;">Rp {tp:,.0f}</div>
+    <div style="font-size:11px;color:#37474f;">({((tp-close)/close*100):+.1f}%)</div>
+</div>""", unsafe_allow_html=True)
 
     st.markdown('<div class="section-title">// CHART TEKNIKAL</div>', unsafe_allow_html=True)
 
