@@ -87,11 +87,26 @@ def get_stock_info(ticker: str) -> dict:
     """Ambil info fundamental dari Yahoo Finance."""
     try:
         t = yf.Ticker(ticker, session=_session)
+        # yfinance .info can be slow or fail. We try to get it.
         info = t.info
-        if not info or len(info) < 5:
-            return dict(t.fast_info)
-        return info
-    except:
+        if info and isinstance(info, dict) and len(info) > 5:
+            return info
+            
+        # If .info fails or is empty, try to construct a minimal dict from other attributes
+        # fast_info is a property in recent yfinance
+        try:
+            fi = t.fast_info
+            return {
+                "longName": IHSG_STOCKS.get(ticker, ticker),
+                "marketCap": getattr(fi, 'market_cap', 0),
+                "currency": getattr(fi, 'currency', 'IDR'),
+                "sector": "N/A",
+                "industry": "N/A",
+                "website": ""
+            }
+        except:
+            return {"longName": IHSG_STOCKS.get(ticker, ticker)}
+    except Exception as e:
         return {}
 
 
