@@ -70,13 +70,25 @@ SECTORS = {
 # ── Fetch price data ──────────────────────────────────────────────────────────
 @st.cache_data(ttl=300)
 def get_price_data(ticker: str, period: str = "6mo", interval: str = "1d") -> pd.DataFrame:
-    """Ambil data harga dari Yahoo Finance."""
+    """Ambil data harga dari Yahoo Finance menggunakan Ticker.history() yang lebih stabil."""
     try:
-        df = yf.download(ticker, period=period, interval=interval, auto_adjust=True, progress=False, session=_session)
+        t = yf.Ticker(ticker, session=_session)
+        # Gunakan history() karena lebih robust dibanding download() untuk single ticker
+        df = t.history(period=period, interval=interval, auto_adjust=True)
+        
+        # Retry logic jika kosong (glitch sementara)
+        if df.empty:
+            import time
+            time.sleep(1)
+            df = t.history(period=period, interval=interval, auto_adjust=True)
+
         if df.empty:
             return pd.DataFrame()
-        df.columns = [c[0] if isinstance(c, tuple) else c for c in df.columns]
-        df = df[["Open","High","Low","Close","Volume"]].dropna()
+            
+        # Bersihkan kolom
+        # history() mengembalikan kolom standar: Open, High, Low, Close, Volume, Dividends, Stock Splits
+        valid_cols = ["Open", "High", "Low", "Close", "Volume"]
+        df = df[[c for c in valid_cols if c in df.columns]].dropna()
         return df
     except Exception as e:
         return pd.DataFrame()
