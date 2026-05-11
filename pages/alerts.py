@@ -69,15 +69,15 @@ def render():
 
     if not alerts:
         st.markdown("""
-        <div class="alert-box">
-            ℹ Belum ada alert yang dibuat. Tambahkan alert di atas untuk mulai memantau saham secara otomatis.
-            <br><br>
-            <strong>Tips penggunaan alert:</strong><br>
-            • Set alert RSI Oversold untuk saham yang kamu incar — masuk ketika pasar panic selling<br>
-            • Set alert Harga di bawah threshold pada level support kunci sebagai sinyal entry<br>
-            • Set alert Sinyal BUY muncul untuk auto-monitoring tanpa harus buka chart setiap saat
-        </div>
-        """, unsafe_allow_html=True)
+<div class="alert-box">
+    ℹ Belum ada alert yang dibuat. Tambahkan alert di atas untuk mulai memantau saham secara otomatis.
+    <br><br>
+    <strong>Tips penggunaan alert:</strong><br>
+    • Set alert RSI Oversold untuk saham yang kamu incar — masuk ketika pasar panic selling<br>
+    • Set alert Harga di bawah threshold pada level support kunci sebagai sinyal entry<br>
+    • Set alert Sinyal BUY muncul untuk auto-monitoring tanpa harus buka chart setiap saat
+</div>
+""", unsafe_allow_html=True)
         return
 
     st.markdown('<div class="section-title">// ALERT AKTIF — KLIK CEK KONDISI SEKARANG</div>', unsafe_allow_html=True)

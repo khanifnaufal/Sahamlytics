@@ -130,11 +130,11 @@ def render():
         st.download_button("⬇ Download Hasil CSV", csv, "scan_ihsg.csv", "text/csv")
     else:
         st.markdown("""
-        <div class="alert-box">
-            ℹ Pilih sektor dan kriteria di atas, lalu tekan SCAN untuk memulai screening saham secara otomatis.
-            Proses scanning membutuhkan waktu 30-60 detik tergantung jumlah saham yang dipilih.
-        </div>
-        """, unsafe_allow_html=True)
+<div class="alert-box">
+    ℹ Pilih sektor dan kriteria di atas, lalu tekan SCAN untuk memulai screening saham secara otomatis.
+    Proses scanning membutuhkan waktu 30-60 detik tergantung jumlah saham yang dipilih.
+</div>
+""", unsafe_allow_html=True)
 
         st.markdown('<div class="section-title">// KRITERIA SCREENING YANG DIREKOMENDASIKAN</div>', unsafe_allow_html=True)
         tips = [
