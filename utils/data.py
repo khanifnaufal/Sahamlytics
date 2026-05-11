@@ -3,6 +3,14 @@ import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
 import streamlit as st
+import requests
+
+# Setup session for yfinance to be more robust and avoid rate limits
+_session = requests.Session()
+_session.headers.update({
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+})
+
 
 # ── Daftar saham IHSG populer ─────────────────────────────────────────────────
 IHSG_STOCKS = {
@@ -64,7 +72,7 @@ SECTORS = {
 def get_price_data(ticker: str, period: str = "6mo", interval: str = "1d") -> pd.DataFrame:
     """Ambil data harga dari Yahoo Finance."""
     try:
-        df = yf.download(ticker, period=period, interval=interval, auto_adjust=True, progress=False)
+        df = yf.download(ticker, period=period, interval=interval, auto_adjust=True, progress=False, session=_session)
         if df.empty:
             return pd.DataFrame()
         df.columns = [c[0] if isinstance(c, tuple) else c for c in df.columns]
@@ -78,7 +86,10 @@ def get_price_data(ticker: str, period: str = "6mo", interval: str = "1d") -> pd
 def get_stock_info(ticker: str) -> dict:
     """Ambil info fundamental dari Yahoo Finance."""
     try:
-        info = yf.Ticker(ticker).info
+        t = yf.Ticker(ticker, session=_session)
+        info = t.info
+        if not info or len(info) < 5:
+            return dict(t.fast_info)
         return info
     except:
         return {}

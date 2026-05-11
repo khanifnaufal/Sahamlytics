@@ -232,8 +232,8 @@ def render():
     if summary:
         st.markdown('<div class="section-title">// TENTANG PERUSAHAAN</div>', unsafe_allow_html=True)
         st.markdown(f"""
-        <div style="background:#111827;border:1px solid #1e293b;border-radius:8px;padding:16px 20px;
-                    font-size:13px;color:#78909c;line-height:1.8;">
-            {summary[:600]}{'...' if len(summary) > 600 else ''}
-        </div>
-        """, unsafe_allow_html=True)
+<div style="background:#111827;border:1px solid #1e293b;border-radius:8px;padding:16px 20px;
+            font-size:13px;color:#78909c;line-height:1.8;">
+    {summary[:600]}{'...' if len(summary) > 600 else ''}
+</div>
+""", unsafe_allow_html=True)
