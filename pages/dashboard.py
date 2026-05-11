@@ -59,13 +59,12 @@ def render():
     
     name = info.get("longName", ticker_display)
     st.markdown(f"""
-<div style="background:#111827;border:1px solid #1e293b;border-radius:8px;
-            padding:12px 20px;margin-bottom:16px;display:flex;align-items:center;">
-    {logo_html}
-    <div>
-        <span style="font-family:'Space Mono',monospace;font-size:20px;font-weight:700;color:#00e5ff;">{ticker_display.replace('.JK','')}</span>
-        <span style="font-size:14px;color:#90a4ae;margin-left:8px;">{name}</span>
-    </div>
+<div style="background:#111827;border:1px solid #1e293b;border-radius:8px;padding:12px 20px;margin-bottom:16px;display:flex;align-items:center;">
+{logo_html}
+<div>
+<span style="font-family:'Space Mono',monospace;font-size:20px;font-weight:700;color:#00e5ff;">{ticker_display.replace('.JK','')}</span>
+<span style="font-size:14px;color:#90a4ae;margin-left:8px;">{name}</span>
+</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -113,20 +112,23 @@ def render():
     with sc2:
         sl = sig.get("sl")
         tp = sig.get("tp")
+    with sc2:
+        sl = sig.get("sl")
+        tp = sig.get("tp")
         if sl:
             st.markdown(f"""
 <div style="background:#111827;border:1px solid #1e293b;border-radius:8px;padding:10px 16px;text-align:center;">
-    <div style="font-size:11px;color:#546e7a;font-family:'Space Mono',monospace;">STOP LOSS</div>
-    <div style="font-size:20px;font-weight:700;color:#ff1744;font-family:'Space Mono',monospace;">Rp {sl:,.0f}</div>
-    <div style="font-size:11px;color:#37474f;">({((sl-close)/close*100):+.1f}%)</div>
+<div style="font-size:11px;color:#546e7a;font-family:'Space Mono',monospace;">STOP LOSS</div>
+<div style="font-size:20px;font-weight:700;color:#ff1744;font-family:'Space Mono',monospace;">Rp {sl:,.0f}</div>
+<div style="font-size:11px;color:#37474f;">({((sl-close)/close*100):+.1f}%)</div>
 </div>""", unsafe_allow_html=True)
     with sc3:
         if tp:
             st.markdown(f"""
 <div style="background:#111827;border:1px solid #1e293b;border-radius:8px;padding:10px 16px;text-align:center;">
-    <div style="font-size:11px;color:#546e7a;font-family:'Space Mono',monospace;">TAKE PROFIT</div>
-    <div style="font-size:20px;font-weight:700;color:#00e676;font-family:'Space Mono',monospace;">Rp {tp:,.0f}</div>
-    <div style="font-size:11px;color:#37474f;">({((tp-close)/close*100):+.1f}%)</div>
+<div style="font-size:11px;color:#546e7a;font-family:'Space Mono',monospace;">TAKE PROFIT</div>
+<div style="font-size:20px;font-weight:700;color:#00e676;font-family:'Space Mono',monospace;">Rp {tp:,.0f}</div>
+<div style="font-size:11px;color:#37474f;">({((tp-close)/close*100):+.1f}%)</div>
 </div>""", unsafe_allow_html=True)
 
     st.markdown('<div class="section-title">// CHART TEKNIKAL</div>', unsafe_allow_html=True)
@@ -288,14 +290,12 @@ def render():
 
         strength = "●" * weight + "○" * (3 - weight)
         st.markdown(f"""
-<div style="display:flex;align-items:center;gap:12px;padding:8px 12px;
-            background:#111827;border-radius:8px;margin-bottom:6px;
-            border-left:3px solid {color}">
-    <span style="font-size:16px">{icon}</span>
-    <div style="flex:1">
-        <span style="font-size:13px;color:#e8eaf6;">{desc}</span>
-    </div>
-    <span style="font-size:12px;color:#546e7a;font-family:'Space Mono',monospace;">{strength}</span>
+<div style="display:flex;align-items:center;gap:12px;padding:8px 12px;background:#111827;border-radius:8px;margin-bottom:6px;border-left:3px solid {color}">
+<span style="font-size:16px">{icon}</span>
+<div style="flex:1">
+<span style="font-size:13px;color:#e8eaf6;">{desc}</span>
+</div>
+<span style="font-size:12px;color:#546e7a;font-family:'Space Mono',monospace;">{strength}</span>
 </div>
 """, unsafe_allow_html=True)
 
@@ -304,31 +304,27 @@ def render():
     bear = sig.get("bear_pts", 0)
     score = sig.get("score", 0)
     st.markdown(f"""
-<div style="margin-top:16px;padding:16px 20px;background:#111827;
-            border:1px solid #1e293b;border-radius:12px;
-            display:flex;justify-content:space-between;align-items:center;">
-    <div style="text-align:center;">
-        <div style="font-size:11px;color:#546e7a;font-family:'Space Mono',monospace;">BULL POINTS</div>
-        <div style="font-size:24px;font-weight:700;color:#00e676;font-family:'Space Mono',monospace;">+{bull}</div>
-    </div>
-    <div style="text-align:center;">
-        <div style="font-size:11px;color:#546e7a;font-family:'Space Mono',monospace;">BEAR POINTS</div>
-        <div style="font-size:24px;font-weight:700;color:#ff1744;font-family:'Space Mono',monospace;">-{bear}</div>
-    </div>
-    <div style="text-align:center;">
-        <div style="font-size:11px;color:#546e7a;font-family:'Space Mono',monospace;">NET SCORE</div>
-        <div style="font-size:28px;font-weight:700;font-family:'Space Mono',monospace;
-                    color:{'#00e676' if score>0 else '#ff1744' if score<0 else '#ffd600'}">
-            {score:+.0f}
-        </div>
-    </div>
-    <div style="text-align:center;">
-        <div style="font-size:11px;color:#546e7a;font-family:'Space Mono',monospace;">KEPUTUSAN</div>
-        <div style="font-size:24px;font-weight:700;font-family:'Space Mono',monospace;
-                    color:{'#00e676' if signal=='BUY' else '#ff1744' if signal=='SELL' else '#ffd600'}">
-            {signal}
-        </div>
-    </div>
+<div style="margin-top:16px;padding:16px 20px;background:#111827;border:1px solid #1e293b;border-radius:12px;display:flex;justify-content:space-between;align-items:center;">
+<div style="text-align:center;">
+<div style="font-size:11px;color:#546e7a;font-family:'Space Mono',monospace;">BULL POINTS</div>
+<div style="font-size:24px;font-weight:700;color:#00e676;font-family:'Space Mono',monospace;">+{bull}</div>
+</div>
+<div style="text-align:center;">
+<div style="font-size:11px;color:#546e7a;font-family:'Space Mono',monospace;">BEAR POINTS</div>
+<div style="font-size:24px;font-weight:700;color:#ff1744;font-family:'Space Mono',monospace;">-{bear}</div>
+</div>
+<div style="text-align:center;">
+<div style="font-size:11px;color:#546e7a;font-family:'Space Mono',monospace;">NET SCORE</div>
+<div style="font-size:28px;font-weight:700;font-family:'Space Mono',monospace;color:{'#00e676' if score>0 else '#ff1744' if score<0 else '#ffd600'}">
+{score:+.0f}
+</div>
+</div>
+<div style="text-align:center;">
+<div style="font-size:11px;color:#546e7a;font-family:'Space Mono',monospace;">KEPUTUSAN</div>
+<div style="font-size:24px;font-weight:700;font-family:'Space Mono',monospace;color:{'#00e676' if signal=='BUY' else '#ff1744' if signal=='SELL' else '#ffd600'}">
+{signal}
+</div>
+</div>
 </div>
 """, unsafe_allow_html=True)
 
