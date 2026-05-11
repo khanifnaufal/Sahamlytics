@@ -137,33 +137,31 @@ def render():
         # Triggered alerts
         if triggered:
             st.markdown(f"""
-<div style="background:#ff174411;border:1px solid #ff1744;border-radius:12px;
-            padding:16px 20px;margin-bottom:16px;">
-    <div style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#ff1744;margin-bottom:12px;">
-        🚨 {len(triggered)} ALERT TERPICU
-    </div>
+<div style="background:#ff174411;border:1px solid #ff1744;border-radius:12px;padding:16px 20px;margin-bottom:16px;">
+<div style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#ff1744;margin-bottom:12px;">
+🚨 {len(triggered)} ALERT TERPICU
+</div>
 """, unsafe_allow_html=True)
 
             for a in triggered:
                 close_fmt = f"Rp {a['_close']:,.0f}"
                 st.markdown(f"""
-<div style="background:#1a0000;border:1px solid #ff174466;border-radius:8px;
-            padding:14px 18px;margin-bottom:8px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
-        <div>
-            <span style="font-family:'Space Mono',monospace;font-size:16px;font-weight:700;color:#ff1744;">
-                {a['ticker'].replace('.JK','')}
-            </span>
-            <span style="font-size:12px;color:#546e7a;margin-left:8px;">{a['nama']}</span>
-        </div>
-        <div style="font-size:12px;color:#78909c;">
-            Harga: {close_fmt} · RSI: {a['_rsi']:.1f} · Vol: {a['_vol']:.1f}x · Sinyal: {a['_signal']}
-        </div>
-    </div>
-    <div style="margin-top:8px;font-size:13px;color:#e8eaf6;">
-        ⚡ <strong>{a['type']}</strong>
-        {' — ' + a['note'] if a.get('note') else ''}
-    </div>
+<div style="background:#1a0000;border:1px solid #ff174466;border-radius:8px;padding:14px 18px;margin-bottom:8px;">
+<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+<div>
+<span style="font-family:'Space Mono',monospace;font-size:16px;font-weight:700;color:#ff1744;">
+{a['ticker'].replace('.JK','')}
+</span>
+<span style="font-size:12px;color:#546e7a;margin-left:8px;">{a['nama']}</span>
+</div>
+<div style="font-size:12px;color:#78909c;">
+Harga: {close_fmt} · RSI: {a['_rsi']:.1f} · Vol: {a['_vol']:.1f}x · Sinyal: {a['_signal']}
+</div>
+</div>
+<div style="margin-top:8px;font-size:13px;color:#e8eaf6;">
+⚡ <strong>{a['type']}</strong>
+{' — ' + a['note'] if a.get('note') else ''}
+</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -176,22 +174,20 @@ def render():
                 close_fmt = f"Rp {a['_close']:,.0f}"
                 sig_col = "#00e676" if a['_signal']=="BUY" else "#ff1744" if a['_signal']=="SELL" else "#ffd600"
                 st.markdown(f"""
-<div style="background:#111827;border:1px solid #1e293b;border-radius:8px;
-            padding:12px 16px;margin-bottom:6px;
-            display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
-    <div>
-        <span style="font-family:'Space Mono',monospace;font-weight:700;color:#e8eaf6;">
-            {a['ticker'].replace('.JK','')}
-        </span>
-        <span style="font-size:12px;color:#546e7a;margin-left:8px;">{a['type']}</span>
-    </div>
-    <div style="display:flex;gap:16px;align-items:center;font-size:12px;color:#546e7a;">
-        <span>{close_fmt}</span>
-        <span>RSI {a['_rsi']:.1f}</span>
-        <span>Vol {a['_vol']:.1f}x</span>
-        <span style="color:{sig_col};font-weight:600;">{a['_signal']}</span>
-    </div>
-    <span style="font-size:11px;color:#37474f;">⚪ Belum terpicu</span>
+<div style="background:#111827;border:1px solid #1e293b;border-radius:8px;padding:12px 16px;margin-bottom:6px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+<div>
+<span style="font-family:'Space Mono',monospace;font-weight:700;color:#e8eaf6;">
+{a['ticker'].replace('.JK','')}
+</span>
+<span style="font-size:12px;color:#546e7a;margin-left:8px;">{a['type']}</span>
+</div>
+<div style="display:flex;gap:16px;align-items:center;font-size:12px;color:#546e7a;">
+<span>{close_fmt}</span>
+<span>RSI {a['_rsi']:.1f}</span>
+<span>Vol {a['_vol']:.1f}x</span>
+<span style="color:{sig_col};font-weight:600;">{a['_signal']}</span>
+</div>
+<span style="font-size:11px;color:#37474f;">⚪ Belum terpicu</span>
 </div>
 """, unsafe_allow_html=True)
 
@@ -200,19 +196,17 @@ def render():
         st.markdown('<div class="section-title">// DAFTAR ALERT</div>', unsafe_allow_html=True)
         for i, a in enumerate(alerts):
             st.markdown(f"""
-<div style="background:#111827;border:1px solid #1e293b;border-radius:8px;
-            padding:12px 16px;margin-bottom:6px;
-            display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
-    <div>
-        <span style="font-family:'Space Mono',monospace;font-weight:700;color:#00e5ff;">
-            {a['ticker'].replace('.JK','')}
-        </span>
-        <span style="font-size:13px;color:#e8eaf6;margin-left:12px;">{a['type']}</span>
-        {f'<div style="font-size:11px;color:#37474f;margin-top:2px;">{a["note"]}</div>' if a.get('note') else ''}
-    </div>
-    <div style="font-size:12px;color:#546e7a;">
-        {f'Threshold: Rp {a["threshold"]:,.0f}' if a.get("threshold",0) > 0 else ''}
-    </div>
+<div style="background:#111827;border:1px solid #1e293b;border-radius:8px;padding:12px 16px;margin-bottom:6px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+<div>
+<span style="font-family:'Space Mono',monospace;font-weight:700;color:#00e5ff;">
+{a['ticker'].replace('.JK','')}
+</span>
+<span style="font-size:13px;color:#e8eaf6;margin-left:12px;">{a['type']}</span>
+{f'<div style="font-size:11px;color:#37474f;margin-top:2px;">{a["note"]}</div>' if a.get('note') else ''}
+</div>
+<div style="font-size:12px;color:#546e7a;">
+{f'Threshold: Rp {a["threshold"]:,.0f}' if a.get("threshold",0) > 0 else ''}
+</div>
 </div>
 """, unsafe_allow_html=True)
 

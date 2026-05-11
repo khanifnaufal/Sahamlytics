@@ -79,47 +79,42 @@ def render():
             logo_html = f'<img src="{logo_url}" width="32" style="border-radius:4px; margin-right:12px; vertical-align:middle;">' if logo_url else ''
 
             st.markdown(f"""
-<div style="background:#111827;border:1px solid #1e293b;border-left:3px solid {sig_color};
-            border-radius:12px;padding:16px 20px;margin-bottom:10px;
-            display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
-    <div style="display:flex;align-items:center;min-width:180px;">
-        {logo_html}
-        <div>
-            <div style="font-family:'Space Mono',monospace;font-size:16px;font-weight:700;color:#e8eaf6;">
-                {row['Ticker']}
-            </div>
-            <div style="font-size:12px;color:#546e7a;">{row['Nama']}</div>
-        </div>
-    </div>
-    <div style="text-align:center;">
-        <div style="font-size:11px;color:#546e7a;">Harga</div>
-        <div style="font-family:'Space Mono',monospace;font-weight:700;color:#e8eaf6;">
-            Rp {row['Harga']:,.0f}
-        </div>
-        <div style="font-size:12px;color:{chg_color};">{chg:+.2f}%</div>
-    </div>
-    <div style="text-align:center;">
-        <div style="font-size:11px;color:#546e7a;">RSI</div>
-        <div style="font-family:'Space Mono',monospace;font-weight:700;color:#e8eaf6;">{row['RSI']:.1f}</div>
-    </div>
-    <div style="text-align:center;">
-        <div style="font-size:11px;color:#546e7a;">Vol/Avg</div>
-        <div style="font-family:'Space Mono',monospace;font-weight:700;color:#e8eaf6;">{row['Vol/Avg']:.2f}x</div>
-    </div>
-    <div style="text-align:center;">
-        <div style="font-size:11px;color:#546e7a;">PER / PBV</div>
-        <div style="font-family:'Space Mono',monospace;font-weight:700;color:#e8eaf6;">{per_str} / {pbv_str}</div>
-    </div>
-    <div style="text-align:center;">
-        <div style="font-size:11px;color:#546e7a;">Score</div>
-        <div style="font-family:'Space Mono',monospace;font-weight:700;
-                    color:{'#00e676' if score>0 else '#ff1744'};">{score:+.0f}</div>
-    </div>
-    <div style="background:{sig_color}22;border:1px solid {sig_color}66;
-                border-radius:8px;padding:6px 16px;
-                font-family:'Space Mono',monospace;font-weight:700;color:{sig_color};font-size:14px;">
-        {signal}
-    </div>
+<div style="background:#111827;border:1px solid #1e293b;border-left:3px solid {sig_color};border-radius:12px;padding:16px 20px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+<div style="display:flex;align-items:center;min-width:180px;">
+{logo_html}
+<div>
+<div style="font-family:'Space Mono',monospace;font-size:16px;font-weight:700;color:#e8eaf6;">
+{row['Ticker']}
+</div>
+<div style="font-size:12px;color:#546e7a;">{row['Nama']}</div>
+</div>
+</div>
+<div style="text-align:center;">
+<div style="font-size:11px;color:#546e7a;">Harga</div>
+<div style="font-family:'Space Mono',monospace;font-weight:700;color:#e8eaf6;">
+Rp {row['Harga']:,.0f}
+</div>
+<div style="font-size:12px;color:{chg_color};">{chg:+.2f}%</div>
+</div>
+<div style="text-align:center;">
+<div style="font-size:11px;color:#546e7a;">RSI</div>
+<div style="font-family:'Space Mono',monospace;font-weight:700;color:#e8eaf6;">{row['RSI']:.1f}</div>
+</div>
+<div style="text-align:center;">
+<div style="font-size:11px;color:#546e7a;">Vol/Avg</div>
+<div style="font-family:'Space Mono',monospace;font-weight:700;color:#e8eaf6;">{row['Vol/Avg']:.2f}x</div>
+</div>
+<div style="text-align:center;">
+<div style="font-size:11px;color:#546e7a;">PER / PBV</div>
+<div style="font-family:'Space Mono',monospace;font-weight:700;color:#e8eaf6;">{per_str} / {pbv_str}</div>
+</div>
+<div style="text-align:center;">
+<div style="font-size:11px;color:#546e7a;">Score</div>
+<div style="font-family:'Space Mono',monospace;font-weight:700;color:{'#00e676' if score>0 else '#ff1744'};">{score:+.0f}</div>
+</div>
+<div style="background:{sig_color}22;border:1px solid {sig_color}66;border-radius:8px;padding:6px 16px;font-family:'Space Mono',monospace;font-weight:700;color:{sig_color};font-size:14px;">
+{signal}
+</div>
 </div>
 """, unsafe_allow_html=True)
 

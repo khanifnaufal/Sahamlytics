@@ -66,30 +66,28 @@ def render():
     mc_str = f"Rp {market_cap/1e12:.2f}T" if market_cap > 1e12 else f"Rp {market_cap/1e9:.1f}M" if market_cap else "N/A"
 
     st.markdown(f"""
-<div style="background:#111827;border:1px solid #1e293b;border-radius:12px;
-            padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;">
-    {logo_html}
-    <div>
-        <div style="font-family:'Space Mono',monospace;font-size:22px;font-weight:700;color:#00e5ff;">
-            {ticker.replace('.JK','')}
-        </div>
-        <div style="font-size:16px;color:#e8eaf6;margin:4px 0;">{name}</div>
-        <div style="font-size:13px;color:#546e7a;">{sector} · {industry}</div>
-    </div>
+<div style="background:#111827;border:1px solid #1e293b;border-radius:12px;padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;">
+{logo_html}
+<div>
+<div style="font-family:'Space Mono',monospace;font-size:22px;font-weight:700;color:#00e5ff;">
+{ticker.replace('.JK','')}
 </div>
-<div style="background:#111827;border:1px solid #1e293b;border-radius:12px;
-            padding:16px 24px;margin-bottom:20px;">
-    <div style="display:flex;gap:24px;flex-wrap:wrap;">
-        <div>
-            <div style="font-size:11px;color:#546e7a;">Market Cap</div>
-            <div style="font-size:16px;font-weight:600;color:#e8eaf6;font-family:'Space Mono',monospace;">{mc_str}</div>
-        </div>
-        <div>
-            <div style="font-size:11px;color:#546e7a;">Mata Uang</div>
-            <div style="font-size:16px;font-weight:600;color:#e8eaf6;font-family:'Space Mono',monospace;">{currency}</div>
-        </div>
-        {'<div><a href="' + website + '" target="_blank" style="font-size:12px;color:#00e5ff;">' + website + '</a></div>' if website else ''}
-    </div>
+<div style="font-size:16px;color:#e8eaf6;margin:4px 0;">{name}</div>
+<div style="font-size:13px;color:#546e7a;">{sector} · {industry}</div>
+</div>
+</div>
+<div style="background:#111827;border:1px solid #1e293b;border-radius:12px;padding:16px 24px;margin-bottom:20px;">
+<div style="display:flex;gap:24px;flex-wrap:wrap;">
+<div>
+<div style="font-size:11px;color:#546e7a;">Market Cap</div>
+<div style="font-size:16px;font-weight:600;color:#e8eaf6;font-family:'Space Mono',monospace;">{mc_str}</div>
+</div>
+<div>
+<div style="font-size:11px;color:#546e7a;">Mata Uang</div>
+<div style="font-size:16px;font-weight:600;color:#e8eaf6;font-family:'Space Mono',monospace;">{currency}</div>
+</div>
+{'<div><a href="' + website + '" target="_blank" style="font-size:12px;color:#00e5ff;">' + website + '</a></div>' if website else ''}
+</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -159,23 +157,22 @@ def render():
 
     st.markdown(f"""
 <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;">
-    <div style="flex:1;min-width:200px;background:#111827;border:1px solid #1e293b;border-radius:8px;padding:14px;">
-        <div style="font-size:11px;color:#546e7a;">Total Revenue (TTM)</div>
-        <div style="font-size:20px;font-weight:700;color:#e8eaf6;font-family:'Space Mono',monospace;">{rev_str}</div>
-    </div>
-    <div style="flex:1;min-width:200px;background:#111827;border:1px solid #1e293b;border-radius:8px;padding:14px;">
-        <div style="font-size:11px;color:#546e7a;">Net Income (TTM)</div>
-        <div style="font-size:20px;font-weight:700;font-family:'Space Mono',monospace;
-                    color:{'#00e676' if (earn or 0)>0 else '#ff1744'};">{earn_str}</div>
-    </div>
-    <div style="flex:1;min-width:200px;background:#111827;border:1px solid #1e293b;border-radius:8px;padding:14px;">
-        <div style="font-size:11px;color:#546e7a;">Gross Margin</div>
-        <div style="font-size:20px;font-weight:700;color:#e8eaf6;font-family:'Space Mono',monospace;">{gpm*100:.1f}%</div>
-    </div>
-    <div style="flex:1;min-width:200px;background:#111827;border:1px solid #1e293b;border-radius:8px;padding:14px;">
-        <div style="font-size:11px;color:#546e7a;">Operating Margin</div>
-        <div style="font-size:20px;font-weight:700;color:#e8eaf6;font-family:'Space Mono',monospace;">{opm*100:.1f}%</div>
-    </div>
+<div style="flex:1;min-width:200px;background:#111827;border:1px solid #1e293b;border-radius:8px;padding:14px;">
+<div style="font-size:11px;color:#546e7a;">Total Revenue (TTM)</div>
+<div style="font-size:20px;font-weight:700;color:#e8eaf6;font-family:'Space Mono',monospace;">{rev_str}</div>
+</div>
+<div style="flex:1;min-width:200px;background:#111827;border:1px solid #1e293b;border-radius:8px;padding:14px;">
+<div style="font-size:11px;color:#546e7a;">Net Income (TTM)</div>
+<div style="font-size:20px;font-weight:700;font-family:'Space Mono',monospace;color:{'#00e676' if (earn or 0)>0 else '#ff1744'};">{earn_str}</div>
+</div>
+<div style="flex:1;min-width:200px;background:#111827;border:1px solid #1e293b;border-radius:8px;padding:14px;">
+<div style="font-size:11px;color:#546e7a;">Gross Margin</div>
+<div style="font-size:20px;font-weight:700;color:#e8eaf6;font-family:'Space Mono',monospace;">{gpm*100:.1f}%</div>
+</div>
+<div style="flex:1;min-width:200px;background:#111827;border:1px solid #1e293b;border-radius:8px;padding:14px;">
+<div style="font-size:11px;color:#546e7a;">Operating Margin</div>
+<div style="font-size:20px;font-weight:700;color:#e8eaf6;font-family:'Space Mono',monospace;">{opm*100:.1f}%</div>
+</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -218,11 +215,11 @@ def render():
 
     st.markdown(f"""
 <div style="background:#111827;border:1px solid #1e293b;border-radius:12px;padding:20px 24px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-        <div style="font-size:16px;font-weight:500;color:#e8eaf6;">{overall}</div>
-        <div style="font-family:'Space Mono',monospace;font-size:24px;font-weight:700;color:#00e5ff;">{passed}/{total}</div>
-    </div>
-    {''.join(f'<div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #1e293b;"><span style="font-size:16px;">{"✅" if ok else "❌"}</span><div style="flex:1;font-size:13px;color:#{"e8eaf6" if ok else "546e7a"};">{label}</div><div style="font-size:12px;color:#37474f;">{desc}</div></div>' for label, ok, desc in score_items)}
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+<div style="font-size:16px;font-weight:500;color:#e8eaf6;">{overall}</div>
+<div style="font-family:'Space Mono',monospace;font-size:24px;font-weight:700;color:#00e5ff;">{passed}/{total}</div>
+</div>
+{''.join(f'<div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #1e293b;"><span style="font-size:16px;">{"✅" if ok else "❌"}</span><div style="flex:1;font-size:13px;color:#{"e8eaf6" if ok else "546e7a"};">{label}</div><div style="font-size:12px;color:#37474f;">{desc}</div></div>' for label, ok, desc in score_items)}
 </div>
 """, unsafe_allow_html=True)
 
